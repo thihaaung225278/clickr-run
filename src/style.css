@@ -248,7 +248,7 @@ body {
 
 /* Play once when overlay becomes visible (start / game-over) */
 .overlay:not([hidden]) .panel {
-  animation: panelBounceIn 1.05s cubic-bezier(0.22, 1.35, 0.36, 1) 0.06s both;
+  animation: panelBounceIn 0.95s ease-out 0.05s both;
 }
 
 @keyframes overlayFadeIn {
@@ -263,17 +263,25 @@ body {
 @keyframes panelBounceIn {
   0% {
     opacity: 0;
-    transform: translateY(3.5rem) scale(0.72);
+    transform: translateY(2.4rem) scale(0.84);
+    animation-timing-function: cubic-bezier(0.22, 1.1, 0.36, 1);
   }
-  45% {
+  38% {
     opacity: 1;
-    transform: translateY(-1.1rem) scale(1.08);
+    transform: translateY(-0.65rem) scale(1.05);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
-  65% {
-    transform: translateY(0.55rem) scale(0.96);
+  56% {
+    transform: translateY(0.32rem) scale(0.978);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
-  80% {
-    transform: translateY(-0.35rem) scale(1.03);
+  72% {
+    transform: translateY(-0.14rem) scale(1.014);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  86% {
+    transform: translateY(0.05rem) scale(0.996);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
   100% {
     opacity: 1;
