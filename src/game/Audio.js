@@ -227,11 +227,11 @@ export class GameAudio {
   }
 
   playJump() {
-    this._blip(320, 0.08, "sine", 0.35);
+    this._blip(320, 0.1, "sine", 0.7);
   }
 
   playSlide() {
-    this._noiseBurst(0.12, 0.22);
+    this._noiseBurst(0.16, 0.62);
   }
 
   _schedule() {
