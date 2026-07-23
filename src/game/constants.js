@@ -25,7 +25,7 @@ export const COLORS = {
   moss: 0x3a5a38,
   gold: 0xd4a017,
   torch: CLICKR.orange,
-  fog: 0x050814,
+  fog: 0x0a080c,
   clickrOrange: CLICKR.orange,
   clickrAccent: CLICKR.accent,
   clickrDark: CLICKR.dark,

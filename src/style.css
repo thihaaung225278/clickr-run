@@ -1,13 +1,14 @@
 :root {
-  --bg-deep: #02040a;
+  --bg-deep: #1a1008;
+  --bg-mid: #2a1810;
   --clickr-orange: #ff6900;
   --clickr-accent: #cc5406;
   --clickr-dark: #1b1b1a;
   --sand: #fbf5e8;
   --ember: #ff6900;
   --stone: #cc5406;
-  --mist: rgba(5, 8, 20, 0.72);
-  --panel: rgba(8, 10, 18, 0.92);
+  --mist: rgba(28, 16, 8, 0.42);
+  --panel: rgba(42, 26, 16, 0.78);
   --focus: #ffe27d;
 }
 
@@ -24,7 +25,10 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: var(--bg-deep);
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(255, 105, 0, 0.28), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 80% 100%, rgba(204, 84, 6, 0.18), transparent 50%),
+    linear-gradient(165deg, #2e1a10 0%, var(--bg-deep) 45%, #0e0a08 100%);
   font-family: "Outfit", system-ui, sans-serif;
   color: var(--sand);
   -webkit-tap-highlight-color: transparent;
@@ -170,10 +174,53 @@ body {
   display: grid;
   place-items: center;
   padding: 1.25rem;
+  isolation: isolate;
   background:
-    radial-gradient(ellipse at 50% 20%, rgba(212, 90, 42, 0.22), transparent 55%),
-    linear-gradient(180deg, rgba(8, 5, 3, 0.35), var(--mist));
-  backdrop-filter: blur(0.35rem);
+    radial-gradient(ellipse 80% 45% at 50% -5%, rgba(255, 140, 40, 0.38), transparent 58%),
+    radial-gradient(ellipse 55% 40% at 15% 85%, rgba(204, 84, 6, 0.22), transparent 55%),
+    radial-gradient(ellipse 50% 35% at 90% 70%, rgba(255, 105, 0, 0.14), transparent 50%),
+    linear-gradient(
+      180deg,
+      rgba(40, 22, 12, 0.28) 0%,
+      rgba(20, 12, 8, 0.38) 45%,
+      rgba(12, 8, 6, 0.55) 100%
+    );
+  backdrop-filter: blur(0.2rem) saturate(1.15);
+}
+
+.overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0,
+      transparent 11px,
+      rgba(251, 245, 232, 0.03) 11px,
+      rgba(251, 245, 232, 0.03) 12px
+    );
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 55% 50% at 50% 48%,
+    transparent 35%,
+    rgba(8, 4, 2, 0.45) 100%
+  );
+}
+
+.overlay:not([hidden]) {
+  animation: overlayFadeIn 0.55s ease-out both;
 }
 
 .overlay[hidden],
@@ -182,40 +229,84 @@ body {
 }
 
 .panel {
+  position: relative;
+  z-index: 1;
   width: min(100%, 26rem);
-  padding: clamp(1.5rem, 4vw, 2.25rem);
-  border: 1px solid rgba(232, 196, 138, 0.22);
+  padding: clamp(1.65rem, 4.5vw, 2.5rem);
+  border: 1px solid rgba(251, 245, 232, 0.28);
   background:
-    linear-gradient(160deg, rgba(60, 32, 16, 0.55), transparent 50%),
+    linear-gradient(145deg, rgba(255, 160, 60, 0.18), transparent 42%),
+    linear-gradient(200deg, rgba(80, 42, 22, 0.65), transparent 55%),
     var(--panel);
-  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(255, 105, 0, 0.12),
+    0 1.5rem 3.5rem rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(251, 245, 232, 0.12);
   text-align: center;
+  transform-origin: center center;
+}
+
+/* Play once when overlay becomes visible (start / game-over) */
+.overlay:not([hidden]) .panel {
+  animation: panelBounceIn 1.05s cubic-bezier(0.22, 1.35, 0.36, 1) 0.06s both;
+}
+
+@keyframes overlayFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes panelBounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(3.5rem) scale(0.72);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-1.1rem) scale(1.08);
+  }
+  65% {
+    transform: translateY(0.55rem) scale(0.96);
+  }
+  80% {
+    transform: translateY(-0.35rem) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .brand {
   font-family: "Cinzel", serif;
-  font-size: clamp(1.85rem, 6vw, 2.6rem);
+  font-size: clamp(2.1rem, 7vw, 3rem);
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--sand);
-  text-shadow: 0 0.15rem 1.2rem rgba(212, 90, 42, 0.45);
-  margin-bottom: 0.35rem;
+  text-shadow:
+    0 0.1rem 0.2rem rgba(0, 0, 0, 0.45),
+    0 0.25rem 1.6rem rgba(255, 105, 0, 0.55);
+  margin-bottom: 0.45rem;
 }
 
 .panel h1 {
   font-family: "Outfit", sans-serif;
-  font-size: clamp(1rem, 3.2vw, 1.2rem);
+  font-size: clamp(1.05rem, 3.4vw, 1.3rem);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(232, 196, 138, 0.78);
-  margin-bottom: 0.85rem;
+  color: rgba(255, 210, 150, 0.92);
+  margin-bottom: 0.9rem;
 }
 
 .subtitle {
   font-size: clamp(0.9rem, 2.6vw, 1rem);
   line-height: 1.55;
-  color: rgba(232, 196, 138, 0.82);
+  color: rgba(251, 245, 232, 0.88);
   margin-bottom: 1.35rem;
 }
 
@@ -258,7 +349,7 @@ body {
   justify-content: center;
   gap: 0.65rem 1.1rem;
   font-size: 0.82rem;
-  color: rgba(232, 196, 138, 0.7);
+  color: rgba(251, 245, 232, 0.72);
 }
 
 .controls kbd {
@@ -302,5 +393,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .cta {
     transition: none;
+  }
+
+  .overlay:not([hidden]),
+  .overlay:not([hidden]) .panel {
+    animation: none !important;
   }
 }

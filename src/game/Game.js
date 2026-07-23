@@ -34,7 +34,7 @@ export class Game {
 
     this.scene = new THREE.Scene();
     // Starfield sets scene.background to a starry canvas
-    this.scene.fog = new THREE.FogExp2(0x050814, 0.014);
+    this.scene.fog = new THREE.FogExp2(COLORS.fog, 0.014);
 
     this.camera = new THREE.PerspectiveCamera(
       55,

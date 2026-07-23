@@ -123,14 +123,27 @@ export class Starfield {
     const ctx = this._bgCtx;
     const w = this._bgCanvas.width;
     const h = this._bgCanvas.height;
-    ctx.fillStyle = "#02040a";
+    // Warm dusk sky (readable behind title overlay — not a flat black void)
+    const sky = ctx.createLinearGradient(0, 0, 0, h);
+    sky.addColorStop(0, "#1e1418");
+    sky.addColorStop(0.35, "#120e14");
+    sky.addColorStop(0.7, "#0a080c");
+    sky.addColorStop(1, "#060508");
+    ctx.fillStyle = sky;
     ctx.fillRect(0, 0, w, h);
 
-    // Soft milky band
-    const band = ctx.createLinearGradient(0, h * 0.25, 0, h * 0.75);
-    band.addColorStop(0, "rgba(20,28,55,0)");
-    band.addColorStop(0.5, "rgba(40,55,100,0.22)");
-    band.addColorStop(1, "rgba(20,28,55,0)");
+    // Ember glow near horizon + soft milky band
+    const glow = ctx.createRadialGradient(w * 0.5, h * 0.92, 0, w * 0.5, h * 0.92, h * 0.55);
+    glow.addColorStop(0, "rgba(255,105,0,0.22)");
+    glow.addColorStop(0.45, "rgba(204,84,6,0.08)");
+    glow.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, w, h);
+
+    const band = ctx.createLinearGradient(0, h * 0.2, 0, h * 0.7);
+    band.addColorStop(0, "rgba(40,28,55,0)");
+    band.addColorStop(0.5, "rgba(55,40,70,0.16)");
+    band.addColorStop(1, "rgba(40,28,55,0)");
     ctx.fillStyle = band;
     ctx.fillRect(0, 0, w, h);
 

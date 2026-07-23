@@ -80,6 +80,7 @@ export class UI {
   showStart(onStart) {
     this.hud.hidden = true;
     if (this.pauseOverlay) this.pauseOverlay.hidden = true;
+    // Keep overlay open if already visible (avoids flash after loading)
     this.overlay.hidden = false;
     if (this.brand) this.brand.textContent = "clickr run";
     this.title.textContent = "Ruins Await";
