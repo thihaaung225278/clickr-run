@@ -17,8 +17,8 @@ export class GameAudio {
     this._bgmEl = null;
     this._bgmMode = null; // "file" | "synth" | null
     this._bgmUrl = "/audio/My%20Way%20-%20NEFFEX.mp3";
-    this._musicVolume = 0.55; // 0..1 user-facing music level
-    this._sfxVolume = 0.9; // 0..1 SFX / coin level (default loud)
+    this._musicVolume = 0.15; // My Way BGM — quieter default
+    this._sfxVolume = 0.6; // jump / slide / coin / hit
     this._paused = false;
   }
 
