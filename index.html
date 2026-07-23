@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="my">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="clickr run — Three.js endless runner" />
+    <title>clickr run</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Outfit:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas" aria-label="clickr run game view"></canvas>
+
+      <div id="hud" class="hud" hidden>
+        <div class="hud-score">
+          <span class="hud-label">Score</span>
+          <span id="score-value">0</span>
+        </div>
+        <div class="hud-right">
+          <div class="hud-coins">
+            <span class="coin-icon" aria-hidden="true"></span>
+            <span id="coin-value">0</span>
+          </div>
+          <label class="vol-control" for="volume-slider">
+            <span class="vol-label">Music</span>
+            <input
+              id="volume-slider"
+              type="range"
+              min="0"
+              max="100"
+              value="55"
+              step="1"
+              aria-label="Music volume"
+            />
+          </label>
+          <label class="vol-control" for="sfx-slider">
+            <span class="vol-label">Coins / SFX</span>
+            <input
+              id="sfx-slider"
+              type="range"
+              min="0"
+              max="100"
+              value="90"
+              step="1"
+              aria-label="SFX volume"
+            />
+          </label>
+          <button id="mute-btn" type="button" class="mute-btn" aria-pressed="false" title="Mute">
+            Sound On
+          </button>
+        </div>
+        <p class="credit">created by: <span>Thiha</span></p>
+      </div>
+
+      <div id="pause-overlay" class="overlay pause-overlay" hidden>
+        <div class="panel" role="dialog" aria-labelledby="pause-heading">
+          <p class="brand">Paused</p>
+          <h1 id="pause-heading">Take a Breath</h1>
+          <p class="subtitle">Press <kbd>Caps Lock</kbd> again to resume.</p>
+          <button id="resume-btn" type="button" class="cta">Resume Run</button>
+        </div>
+      </div>
+
+      <div id="overlay" class="overlay">
+        <div class="panel" role="dialog" aria-labelledby="title-heading">
+          <p class="brand">clickr run</p>
+          <h1 id="title-heading">Ruins Await</h1>
+          <p id="subtitle" class="subtitle">
+            Swipe or use arrows — dodge, jump, slide through the temple path.
+          </p>
+          <button id="start-btn" type="button" class="cta">Begin Run</button>
+          <ul class="controls" aria-label="Controls">
+            <li><kbd>Space</kbd> start</li>
+            <li><kbd>←</kbd><kbd>→</kbd> lanes</li>
+            <li><kbd>↑</kbd> jump · <kbd>↓</kbd> slide</li>
+            <li><kbd>Caps Lock</kbd> pause</li>
+            <li><kbd>-</kbd><kbd>=</kbd> music volume</li>
+            <li><kbd>[</kbd><kbd>]</kbd> coin / SFX volume</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
